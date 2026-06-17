@@ -1,0 +1,24 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- الثيم الأساسي -->
+    <style name="Base.Theme.Pharmaapp" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <!-- الألوان الأساسية -->
+        <item name="colorPrimary">#2196F3</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+        <item name="colorSecondary">#2196F3</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+
+        <!-- الخلفية -->
+        <item name="android:colorBackground">#FFFFFF</item>
+
+    </style>
+
+    <!-- الثيم النهائي -->
+    <style name="Theme.Pharmaapp" parent="Base.Theme.Pharmaapp" />
+    <style name="WhiteText">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+</resources>

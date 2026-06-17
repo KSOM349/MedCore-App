@@ -1,0 +1,18 @@
+<resources>
+
+    <!-- Basic Colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- Background -->
+    <color name="background_dark">#0F172A</color>
+
+    <!-- Cards Colors (Strong & Clear) -->
+    <color name="law_red">#E53935</color>
+    <color name="law_green">#43A047</color>
+    <color name="law_blue">#1E88E5</color>
+    <color name="law_purple">#8E24AA</color>
+    <color name="law_orange">#FB8C00</color>
+    <color name="law_gray">#616161</color>
+
+</resources>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0F172A">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- MedCore -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🩺 MedCore"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/btn_study"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@drawable/button_bg"
+            android:backgroundTint="#14B8A6"
+            android:gravity="center"
+            android:text="Undersköterska"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:elevation="8dp"
+            android:layout_marginBottom="24dp"/>
+        <!-- العنوان -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sweden Life 🇸🇪"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Laws -->
+        <TextView
+            android:id="@+id/btn_laws"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@drawable/button_bg"
+            android:backgroundTint="#F87171"
+            android:gravity="center"
+            android:text="Laws and Rules"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:elevation="8dp"
+            android:layout_marginBottom="14dp"/>
+
+        <!-- Job -->
+        <TextView
+            android:id="@+id/btn_job"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@drawable/button_bg"
+            android:backgroundTint="#4ADE80"
+            android:gravity="center"
+            android:text="Find a Job"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:elevation="8dp"
+            android:layout_marginBottom="14dp"/>
+
+        <!-- Family -->
+        <TextView
+            android:id="@+id/btn_family"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@drawable/button_bg"
+            android:backgroundTint="#60A5FA"
+            android:gravity="center"
+            android:text="Family and Kids"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:elevation="8dp"
+            android:layout_marginBottom="14dp"/>
+
+        <!-- Health -->
+        <TextView
+            android:id="@+id/btn_health"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@drawable/button_bg"
+            android:backgroundTint="#C084FC"
+            android:gravity="center"
+            android:text="Health Care"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:elevation="8dp"
+            android:layout_marginBottom="14dp"/>
+
+        <!-- Government -->
+        <TextView
+            android:id="@+id/btn_government"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@drawable/button_bg"
+            android:backgroundTint="#FBBF24"
+            android:gravity="center"
+            android:text="Government Services"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:elevation="8dp"
+            android:layout_marginBottom="14dp"/>
+
+        <!-- Mistakes -->
+        <TextView
+            android:id="@+id/btn_mistakes"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@drawable/button_bg"
+            android:backgroundTint="#9CA3AF"
+            android:gravity="center"
+            android:text="Common Mistakes"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:elevation="8dp"/>
+
+    </LinearLayout>
+
+</ScrollView>
