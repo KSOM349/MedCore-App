@@ -39,13 +39,12 @@
             android:layout_height="60dp"
             android:text="Omvårdnad 1"
             android:layout_marginBottom="10dp"/>
-
         <Button
-            android:id="@+id/btn_psykiatri1"
+            android:id="@+id/btn_anatomi3"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="Psykiatri 1"/>
-
+            android:text="Anatomi 3"
+            android:layout_marginBottom="10dp"/>
     </LinearLayout>
 
 </ScrollView>
