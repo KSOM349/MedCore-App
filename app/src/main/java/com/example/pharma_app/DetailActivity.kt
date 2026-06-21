@@ -2,9 +2,12 @@ package com.example.pharma_app
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import okhttp3.*
 import java.io.IOException
 
@@ -55,12 +58,28 @@ class DetailActivity : AppCompatActivity() {
                 runOnUiThread {
 
                     val cleanContent = (body ?: "")
-                        .replace("# ", "")
-                        .replace("## ", "")
-                        .replace("### ", "")
-                        .replace("#### ", "")
+                        .replace(Regex("^####\\s*", RegexOption.MULTILINE), "")
+                        .replace(Regex("^###\\s*", RegexOption.MULTILINE), "")
+                        .replace(Regex("^##\\s*", RegexOption.MULTILINE), "")
+                        .replace(Regex("^#\\s*", RegexOption.MULTILINE), "")
                         .replace("---", "\n")
+                        .replace(Regex("<div.*?>", RegexOption.IGNORE_CASE), "")
+                        .replace(Regex("<img.*?>", RegexOption.IGNORE_CASE), "")
+                        .replace("</div>", "")
+                    val lessonImage =
+                        findViewById<ImageView>(R.id.lessonImage)
 
+                    if (body?.contains("<img") == true) {
+
+                        val imageUrl =
+                            "https://raw.githubusercontent.com/KSOM349/MedCore-Content/main/underskoterska/anatomi1/images/cell_och_vavnad.png.jpeg"
+
+                        lessonImage.visibility = View.VISIBLE
+
+                        Glide.with(this@DetailActivity)
+                            .load(imageUrl)
+                            .into(lessonImage)
+                    }
                     textView.text = cleanContent
                 }
             }

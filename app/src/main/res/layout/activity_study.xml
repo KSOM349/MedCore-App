@@ -34,16 +34,16 @@
             android:layout_marginBottom="10dp"/>
 
         <Button
-            android:id="@+id/btn_omvardnad1"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:text="Omvårdnad 1"
-            android:layout_marginBottom="10dp"/>
-        <Button
             android:id="@+id/btn_anatomi3"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:text="Anatomi 3"
+            android:layout_marginBottom="10dp"/>
+        <Button
+            android:id="@+id/btn_anatomi4"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Anatomi 4"
             android:layout_marginBottom="10dp"/>
     </LinearLayout>
 

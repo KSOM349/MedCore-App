@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:textSize="26sp"
         android:textStyle="bold"
-        android:padding="16dp"/>
+        android:padding="16dp" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,11 +24,19 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+            <ImageView
+                android:id="@+id/lessonImage"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginBottom="16dp"
+                android:scaleType="fitCenter"
+                android:visibility="gone" />
+
             <TextView
                 android:id="@+id/descriptionText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -38,7 +46,7 @@
         android:id="@+id/startQuizButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start Quiz"
-        android:layout_margin="16dp"/>
+        android:layout_margin="16dp"
+        android:text="Start Quiz" />
 
 </LinearLayout>
