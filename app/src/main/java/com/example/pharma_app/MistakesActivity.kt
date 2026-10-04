@@ -8,6 +8,6 @@ class MistakesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_mistakes)
+        SwedenGuide.show(this, "mistakes")
     }
 }

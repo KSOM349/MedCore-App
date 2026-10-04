@@ -10,12 +10,14 @@ class StudyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_study)
+        applyScreenInsets()
 
         findViewById<Button>(R.id.btn_anatomi1).setOnClickListener {
 
             val intent = Intent(this, DetailActivity::class.java)
 
             intent.putExtra("english", "Anatomi 1 - Del 1")
+            intent.putExtra("lesson_id", 1)
             intent.putExtra("arabic", "تشريح 1")
             intent.putExtra(
                 "url",
@@ -30,6 +32,7 @@ class StudyActivity : AppCompatActivity() {
             val intent = Intent(this, DetailActivity::class.java)
 
             intent.putExtra("english", "Anatomi 1 - Del 2")
+            intent.putExtra("lesson_id", 2)
             intent.putExtra("arabic", "تشريح 2")
             intent.putExtra(
                 "url",
@@ -44,6 +47,7 @@ class StudyActivity : AppCompatActivity() {
             val intent = Intent(this, DetailActivity::class.java)
 
             intent.putExtra("english", "Anatomi 1 - Del 3")
+            intent.putExtra("lesson_id", 3)
             intent.putExtra("arabic", "تشريح 3")
             intent.putExtra(
                 "url",
@@ -58,6 +62,7 @@ class StudyActivity : AppCompatActivity() {
             val intent = Intent(this, DetailActivity::class.java)
 
             intent.putExtra("english", "Anatomi 1 - Del 4")
+            intent.putExtra("lesson_id", 4)
             intent.putExtra("arabic", "تشريح 4")
             intent.putExtra(
                 "url",

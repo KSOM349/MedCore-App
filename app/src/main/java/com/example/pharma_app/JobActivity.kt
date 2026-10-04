@@ -7,6 +7,6 @@ class JobActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_job)
+        SwedenGuide.show(this, "job")
     }
 }

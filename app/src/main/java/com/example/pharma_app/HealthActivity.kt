@@ -8,6 +8,6 @@ class HealthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_health)
+        SwedenGuide.show(this, "health")
     }
 }

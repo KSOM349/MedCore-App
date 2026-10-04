@@ -10,6 +10,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        applyScreenInsets()
 
         findViewById<TextView>(R.id.btn_laws).setOnClickListener {
             startActivity(Intent(this, LawsActivity::class.java))
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<TextView>(R.id.btn_study).setOnClickListener {
-            startActivity(Intent(this, StudyActivity::class.java))
+            startActivity(Intent(this, SubjectActivity::class.java))
         }
     }
 }

@@ -10,6 +10,13 @@ class SwedenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sweden)
+        applyScreenInsets()
+        findViewById<android.widget.TextView>(R.id.btn_study).setOnClickListener {
+            startActivity(Intent(this, SubjectActivity::class.java))
+        }
+        findViewById<LinearLayout>(R.id.medcoreCard).setOnClickListener {
+            startActivity(Intent(this, SubjectActivity::class.java))
+        }
 
         val laws = findViewById<LinearLayout>(R.id.lawsCard)
         val job = findViewById<LinearLayout>(R.id.jobCard)
