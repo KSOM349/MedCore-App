@@ -2,15 +2,11 @@ package com.example.pharma_app
 
 import android.os.Bundle
 import android.view.View
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-
-data class Question(
-    val question: String,
-    val options: List<String>,
-    val correctAnswer: Int
-)
 
 class QuizActivity : AppCompatActivity() {
 
@@ -22,14 +18,14 @@ class QuizActivity : AppCompatActivity() {
     private lateinit var scoreText: TextView
     private lateinit var restartBtn: Button
 
-    private var currentIndex = 0
-    private var score = 0
-
-    private lateinit var questions: List<Question>
+    private lateinit var session: QuizSession
+    private lateinit var normalTint: List<ColorStateList?>
+    private val buttons get() = listOf(option1, option2, option3, option4)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
+        applyScreenInsets()
 
         questionText = findViewById(R.id.questionText)
         option1 = findViewById(R.id.option1)
@@ -39,7 +35,13 @@ class QuizActivity : AppCompatActivity() {
         scoreText = findViewById(R.id.scoreText)
         restartBtn = findViewById(R.id.restartBtn)
 
-        questions = getQuestions()
+        val questions = QuizContent.anatomy(intent.getIntExtra("lesson_id", 0)) ?: getQuestions()
+        normalTint = buttons.map { it.backgroundTintList }
+        session = QuizSession(questions,
+            savedInstanceState?.getInt("seed") ?: kotlin.random.Random.nextInt(),
+            savedInstanceState?.getInt("index") ?: 0,
+            savedInstanceState?.getInt("score") ?: 0,
+            savedInstanceState?.getInt("selected", -1) ?: -1)
 
         option1.setOnClickListener { checkAnswer(0) }
         option2.setOnClickListener { checkAnswer(1) }
@@ -47,9 +49,8 @@ class QuizActivity : AppCompatActivity() {
         option4.setOnClickListener { checkAnswer(3) }
 
         restartBtn.setOnClickListener {
-            currentIndex = 0
-            score = 0
-            restartBtn.visibility = View.GONE
+            if (session.finished) session = QuizSession(session.questions, kotlin.random.Random.nextInt())
+            else session.next()
             showQuestion()
         }
 
@@ -57,58 +58,46 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun showQuestion() {
-        if (currentIndex >= questions.size) {
-            questionText.text = "Finished! Score: $score / ${questions.size}"
-            option1.visibility = View.GONE
-            option2.visibility = View.GONE
-            option3.visibility = View.GONE
-            option4.visibility = View.GONE
+        scoreText.text = "Score / النتيجة: ${session.score} — ${minOf(session.index + 1, session.questions.size)} / ${session.questions.size}"
+        if (session.finished) {
+            questionText.text = "Finished / انتهى الاختبار: ${session.score} / ${session.questions.size}"
+            buttons.forEach { it.visibility = View.GONE }
+            restartBtn.text = "Restart / إعادة الاختبار"
             restartBtn.visibility = View.VISIBLE
             return
         }
-
-        val q = questions[currentIndex]
-        questionText.text = q.question
-        option1.text = q.options[0]
-        option2.text = q.options[1]
-        option3.text = q.options[2]
-        option4.text = q.options[3]
+        val q = session.questions[session.index]
+        if (session.selected != -1) {
+            val feedback = if (session.selected == session.correctPosition) "Correct / صحيح" else "Incorrect / غير صحيح"
+            scoreText.text = "${scoreText.text}\n$feedback\nCorrect answer / الإجابة الصحيحة: ${q.options[q.correctAnswer]}"
+        }
+        questionText.text = q.question + "\n\nEducational practice only / تدريب تعليمي فقط"
+        buttons.forEachIndexed { position, button ->
+            button.visibility = View.VISIBLE
+            button.isEnabled = session.selected == -1
+            button.text = q.options[session.order[position]]
+            button.backgroundTintList = when {
+                session.selected != -1 && position == session.correctPosition -> ColorStateList.valueOf(Color.rgb(22, 130, 85))
+                session.selected == position -> ColorStateList.valueOf(Color.rgb(185, 50, 50))
+                else -> normalTint[position]
+            }
+        }
+        restartBtn.text = "Next / التالي"
+        restartBtn.visibility = if (session.selected == -1) View.GONE else View.VISIBLE
     }
 
     private fun checkAnswer(selected: Int) {
 
-        val correct = questions[currentIndex].correctAnswer
+        session.answer(selected)
+        showQuestion()
+    }
 
-        // تعطيل الأزرار مؤقتاً
-        option1.isEnabled = false
-        option2.isEnabled = false
-        option3.isEnabled = false
-        option4.isEnabled = false
-
-        // تلوين الإجابات
-        val buttons = listOf(option1, option2, option3, option4)
-
-        if (selected == correct) {
-            score++
-            buttons[selected].setBackgroundColor(resources.getColor(android.R.color.holo_green_light))
-        } else {
-            buttons[selected].setBackgroundColor(resources.getColor(android.R.color.holo_red_light))
-            buttons[correct].setBackgroundColor(resources.getColor(android.R.color.holo_green_light))
-        }
-
-        // انتظار ثانية ثم الانتقال للسؤال التالي
-        questionText.postDelayed({
-
-            // إعادة الألوان
-            for (btn in buttons) {
-                btn.setBackgroundColor(resources.getColor(android.R.color.darker_gray))
-                btn.isEnabled = true
-            }
-
-            currentIndex++
-            showQuestion()
-
-        }, 1000)
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("seed", session.seed)
+        outState.putInt("index", session.index)
+        outState.putInt("score", session.score)
+        outState.putInt("selected", session.selected)
     }
 
     private fun getQuestions(): List<Question> {

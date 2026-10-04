@@ -10,16 +10,17 @@ class SubjectActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_subject)
+        applyScreenInsets()
 
         val btnPharma = findViewById<LinearLayout>(R.id.btnPharma)
         val btnAnatomy = findViewById<LinearLayout>(R.id.btnAnatomy)
 
         btnPharma.setOnClickListener {
-            startActivity(Intent(this, SwedenActivity::class.java))
+            startActivity(Intent(this, QuizActivity::class.java))
         }
 
         btnAnatomy.setOnClickListener {
-            startActivity(Intent(this, SwedenActivity::class.java))
+            startActivity(Intent(this, StudyActivity::class.java))
         }
     }
 }
